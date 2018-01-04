@@ -48,58 +48,57 @@ function obtemPacienteDoFormulario(form){
 
 };*/
 
-function montaTr(paciente){
+// function montaTr(paciente){
+//     //cria a tr e a td
+//     var pacienteTr = document.createElement("tr");
+//     pacienteTr.classList.add('paciente');
+//     pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
+//     pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"));
+//     pacienteTr.appendChild(montaTd(paciente.altura, "info-altura"));
+//     pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
+//     pacienteTr.appendChild(montaTd(paciente.imc, "info-imc"));
+//     pacienteTr.appendChild(montaTd("X", "info-remove"));
 
-    //cria a tr e a td
-    var pacienteTr = document.createElement("tr");
-    pacienteTr.classList.add('paciente');
+//     return pacienteTr;
+// }
 
-    pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
-    pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"));
-    pacienteTr.appendChild(montaTd(paciente.altura, "info-altura"));
-    pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
-    pacienteTr.appendChild(montaTd(paciente.imc, "info-imc"));
+// function montaTd(dado,classe){
 
-    return pacienteTr;
-}
+//     var td = document.createElement("td");
+//     td.textContent = dado;
+//     td.classList.add(classe);
+//     return td;
 
-function montaTd(dado,classe){
+// }
 
-    var td = document.createElement("td");
-    td.textContent = dado;
-    td.classList.add(classe);
-    return td;
+// function validaPaciente(paciente){
 
-}
+//   var erro = [];
 
-function validaPaciente(paciente){
+//   if (paciente.nome.length == 0) {
+//     erro.push("O nome não pode ser em branco!")
+//   }
 
-  var erro = [];
+//   if(!validationDataPatience.validaPeso(paciente.peso)){
+//     erro.push("Peso é inválido!");
+//   }
 
-  if (paciente.nome.length == 0) {
-    erro.push("O nome não pode ser em branco!")
-  }
+//   if(!validationDataPatience.validaAltura(paciente.altura)){
+//     erro.push("Altura é inválida!");
+//   }
 
-  if(!validationDataPatience.validaPeso(paciente.peso)){
-    erro.push("Peso é inválido!");
-  }
+//   if(paciente.gordura.length == 0){
+//     erro.push("A gordura não pode ser em branco!");
+//   }
 
-  if(!validationDataPatience.validaAltura(paciente.altura)){
-    erro.push("Altura é inválida!");
-  }
+//   if (paciente.peso.length == 0) {
+//     erro.push("O peso não pode ser em branco!");
+//   }
 
-  if(paciente.gordura.length == 0){
-    erro.push("A gordura não pode ser em branco!");
-  }
+//   if (paciente.altura.length == 0) {
+//     erro.push("A altura não pode ser em branco!");
+//   }
 
-  if (paciente.peso.length == 0) {
-    erro.push("O peso não pode ser em branco!");
-  }
+//   return erro;
 
-  if (paciente.altura.length == 0) {
-    erro.push("A altura não pode ser em branco!");
-  }
-
-  return erro;
-
-}
+// }

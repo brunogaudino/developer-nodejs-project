@@ -14,14 +14,13 @@ application.use(bodyParser.json({ 'Content-type': 'application/json' }));
 //Carregamento consign
 consign()
     .include('app/routes')
-    //.then('config/dbConnection.js')
+    .then('config/dbConnection.js')
     .then('app/models')
     .then('app/controllers')
     .into(application);
 
 application.use(function(req,res,next){
-    //res.status(404).render('error/404');
-    res.send("Erro 404");
+    res.status(404).redirect('/');
     next();
 });
 /*application.use(function(error, req, res, next){

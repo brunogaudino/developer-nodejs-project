@@ -6,34 +6,31 @@ var campoFiltro = document.querySelector("#filtrar-tabela");
 var botaoBuscaPaciente = document.querySelector("#buscar-pacientes");
 var botaoAddPaciente = document.querySelector("#adicionar-paciente");
 
-  tabela.addEventListener("dblclick", function(event){
-    nutritionSystem.removePatience(event);
+  tabela.addEventListener("click", function(event){
+    actionsSystem.removePatience(event);
   });
 
   campoFiltro.addEventListener("input", function(){
-    nutritionSystem.filterPatience(this);
+    actionsSystem.filterPatience(this);
   });
 
-  botaoBuscaPaciente.addEventListener("click", function(event){
-    //console.log("Buscando Pacientes!");
-    nutritionSystem.searchPatience();
-  });
+  //console.log("Buscando Pacientes!");
 
   botaoAddPaciente.addEventListener("click", function(event) {
       event.preventDefault();
       registerPatience.main(
-        document.querySelector("#form-adiciona"),
+        document.querySelector("form#form-adiciona"),
         registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")),
-        montaTr(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona"))),
-        validaPaciente(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")))
+        actionsSystem.montaTr(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona"))),
+        validationData.validaPaciente(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")))
       );
   });
 
-  validationDataPatience.valid(pacientes);
+  validationData.valid(pacientes);
 
 };// end - window.onload
 
-var nutritionSystem = (function(){
+var actionsSystem = (function(){
 
   return{
 
@@ -58,6 +55,9 @@ var nutritionSystem = (function(){
     },
 
     filterPatience: function(item){
+      //Captura os pacientes atuais
+      var pacientes = document.querySelectorAll(".paciente");
+
       if ( item.value.length > 0) {
         for( var i = 0; i < pacientes.length; i++){
           var paciente = pacientes[i];
@@ -79,17 +79,39 @@ var nutritionSystem = (function(){
     },
 
     removePatience: function(event){
+      console.log("event " + event.target);
         event.target.parentNode.classList.add("fadeOut");
         setTimeout(function(){
             event.target.parentNode.remove();
         }, 500);
+    },
+
+    montaTr: function(paciente){
+        //cria a tr e a td
+        var pacienteTr = document.createElement("tr");
+        pacienteTr.classList.add('paciente');
+        pacienteTr.appendChild(actionsSystem.montaTd(paciente.nome, "info-nome"));
+        pacienteTr.appendChild(actionsSystem.montaTd(paciente.peso, "info-peso"));
+        pacienteTr.appendChild(actionsSystem.montaTd(paciente.altura, "info-altura"));
+        pacienteTr.appendChild(actionsSystem.montaTd(paciente.gordura, "info-gordura"));
+        pacienteTr.appendChild(actionsSystem.montaTd(paciente.imc, "info-imc"));
+        pacienteTr.appendChild(actionsSystem.montaTd("X", "info-remove"));
+    
+        return pacienteTr;
+    },
+
+    montaTd: function(dado,classe){
+      var td = document.createElement("td");
+      td.textContent = dado;
+      td.classList.add(classe);
+      return td;
     }
 
   } // end - return
 
-})(); // end - nutritionSystem
+})(); // end - actionsSystem
 
-var validationDataPatience = (function(){
+var validationData = (function(){
 
   return{
 
@@ -107,8 +129,8 @@ var validationDataPatience = (function(){
 
         var tdImc = paciente.querySelector(".info-imc");
 
-        var pesoEhValido = validationDataPatience.validaPeso(peso);
-        var alturaEhValida = validationDataPatience.validaAltura(altura);
+        var pesoEhValido = validationData.validaPeso(peso);
+        var alturaEhValida = validationData.validaAltura(altura);
 
         if (!pesoEhValido) {
           console.log("Peso inválido!");
@@ -125,7 +147,7 @@ var validationDataPatience = (function(){
         }
 
         if (alturaEhValida && pesoEhValido) {
-          var imc = validationDataPatience.calculaImc(peso,altura);
+          var imc = validationData.calculaImc(peso,altura);
           tdImc.textContent = imc;
         }
 
@@ -153,7 +175,39 @@ var validationDataPatience = (function(){
       var imc = 0;
       imc = peso / (altura * altura);
       return imc.toFixed(2);
-    }
+    },
+
+    validaPaciente: function(paciente){
+      
+        var erro = [];
+      
+        if (paciente.nome.length == 0) {
+          erro.push("O nome não pode ser em branco!")
+        }
+      
+        if(!validationData.validaPeso(paciente.peso)){
+          erro.push("Peso é inválido!");
+        }
+      
+        if(!validationData.validaAltura(paciente.altura)){
+          erro.push("Altura é inválida!");
+        }
+      
+        if(paciente.gordura.length == 0){
+          erro.push("A gordura não pode ser em branco!");
+        }
+      
+        if (paciente.peso.length == 0) {
+          erro.push("O peso não pode ser em branco!");
+        }
+      
+        if (paciente.altura.length == 0) {
+          erro.push("A altura não pode ser em branco!");
+        }
+      
+        return erro;
+      
+      }
 
   }//end - return
 
@@ -170,13 +224,14 @@ var registerPatience = (function(){
       }
       // chamando a nova função adicionaPacienteNaTabela
       registerPatience.adicionaPacienteNaTabela(paciente);
+      form.submit();
       form.reset();
       var mensagensErro = document.querySelector("#mensagem-de-erro");
       mensagensErro.innerHTML = "";
 
     },
     adicionaPacienteNaTabela: function(paciente) {
-        var pacienteTr = montaTr(paciente);
+        var pacienteTr = actionsSystem.montaTr(paciente);
         var tabela = document.querySelector("#tabela-pacientes");
         tabela.appendChild(pacienteTr);
     },
@@ -200,7 +255,7 @@ var registerPatience = (function(){
             peso : form.peso.value,
             altura : form.altura.value,
             gordura : form.gordura.value,
-            imc : validationDataPatience.calculaImc(form.peso.value, form.altura.value)
+            imc : validationData.calculaImc(form.peso.value, form.altura.value)
         }
         return paciente;
     }
