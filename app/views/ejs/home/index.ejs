@@ -19,6 +19,11 @@
 				<h2>Meus pacientes</h2>
 				<label for="filtrar-tabela">Filtrar:</label>
 				<input type="text" name="filtro" id="filtrar-tabela" placeholder="Digite o nome do paciente">
+<%for(i=0; i<patients.length; i++) {%>
+	<p><%=patients[i].nome %></p>
+	<p><%=patients[i].peso %></p>
+	<p><%=patients[i].altura %></p>
+<%}%>
 				<table>
 					<thead>
 						<tr>

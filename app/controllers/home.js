@@ -3,17 +3,10 @@ module.exports.index = function(application, req, res){
     var connection = application.config.dbConnection;
     var patientDAO = new application.app.models.PatientDAO(connection);
 
-
-    //console.log("Result " + patientDAO.listPatient());
-    // res.send(
-        // patientDAO.listPatient(function(error, result){
-        //     console.log("List " + result);
-        //     res.render("home/index");
-        // });
-    // );
-    console.log( patientDAO.listPatient() );
-    res.render("home/index");
-
+    patientDAO.listPatient(function(error, result){
+        console.log(result);
+        res.render("home/index", { patients: result });
+    });
 }
 
 module.exports.cadasterPatient = function(application, req, res){

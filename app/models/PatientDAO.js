@@ -12,18 +12,13 @@ PatientDAO.prototype.insertPatient = function(dataPatient){
     });
 }
 
-PatientDAO.prototype.listPatient = function(){
+PatientDAO.prototype.listPatient = function(callback){
     this._connection.open(function(err, mongoclient){
         mongoclient.collection("patients", function(err, collection){
-            collection.find({}, function(err, results){
-                //console.log("resultsDAO " + results);
-                return results;
+            collection.find({}, function(err, patients){
+                patients.toArray(callback);
             });
-            // collection.find({}, function(err, results){
-            //     //console.log(results);
-            //     return results;
-            // });
-            //mongoclient.close();
+            mongoclient.close();
         });
     });
 }
