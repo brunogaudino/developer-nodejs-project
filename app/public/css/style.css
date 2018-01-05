@@ -160,3 +160,7 @@ button[disabled=disabled], button:disabled {
 #form-adiciona div{
 	margin: 20px auto;
 }
+
+.info-remove, .info-editar{
+	cursor: pointer;
+}

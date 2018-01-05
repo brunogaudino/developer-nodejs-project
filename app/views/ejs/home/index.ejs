@@ -19,12 +19,38 @@
 				<h2>Meus pacientes</h2>
 				<label for="filtrar-tabela">Filtrar:</label>
 				<input type="text" name="filtro" id="filtrar-tabela" placeholder="Digite o nome do paciente">
-<%for(i=0; i<patients.length; i++) {%>
-	<p><%=patients[i].nome %></p>
-	<p><%=patients[i].peso %></p>
-	<p><%=patients[i].altura %></p>
-<%}%>
-				<table>
+				<%if(patients.length > 0){%>
+					<table>
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Peso(kg)</th>
+								<th>Altura(m)</th>
+								<th>Gordura Corporal(%)</th>
+								<th>IMC</th>
+								<th>Editar</th>
+								<th>Remover</th>
+							</tr>
+						</thead>
+						<tbody id="tabela-pacientes">
+							<%for(i=0; i<patients.length; i++) {%>
+								<pre>OI--<%=patients[i].nome %></pre>
+								<tr class="paciente">
+									<td class="info-nome"><%=patients[i].nome %></td>
+									<td class="info-peso"><%=patients[i].peso %></td>
+									<td class="info-altura"><%=patients[i].altura %></td>
+									<td class="info-gordura"><%=patients[i].gordura %></td>
+									<td class="info-imc">0</td>
+									<td class="info-editar"><a href="/edit/<%=patients[i].nome %>">Edit</a></td>
+									<td class="info-remove"><a href="/remove/<%=patients[i].nome %>">X</a></td>
+								</tr>
+							<%}%>
+						</tbody>
+					</table>
+				<%}else{%>
+					<h1>Não há pacientes cadastrados!</h1>
+				<%}%>
+				<!-- <table>
 					<thead>
 						<tr>
 							<th>Nome</th>
@@ -80,7 +106,7 @@
 							<td class="info-remove">X</td>
 						</tr>
 					</tbody>
-				</table>
+				</table> -->
 
 				<span id="erro-ajax" class="invisivel">Erro ao buscar os pacientes</span>
 				<!-- <button id="buscar-pacientes" class="botao bto-principal">Buscar Paciente API</button> -->
@@ -112,7 +138,7 @@
 	        </div>
 	        <div>
 	            <label for="gordura">% de Gordura:</label>
-	            <input id="gordura" type="text" placeholder="digite a porcentagem de gordura do seu paciente" class="campo campo-medio">
+	            <input id="gordura" name="gordura" type="text" placeholder="digite a porcentagem de gordura do seu paciente" class="campo campo-medio">
 	        </div>
 
 	        <button id="adicionar-paciente" class="botao bto-principal">Adicionar</button>

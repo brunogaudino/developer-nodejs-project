@@ -7,7 +7,9 @@ var botaoBuscaPaciente = document.querySelector("#buscar-pacientes");
 var botaoAddPaciente = document.querySelector("#adicionar-paciente");
 
   tabela.addEventListener("click", function(event){
-    actionsSystem.removePatience(event);
+    itemClicado = event.target.parentNode.classList;
+    console.log( event.target.node );
+    //actionsSystem.removePatience(event);
   });
 
   campoFiltro.addEventListener("input", function(){
@@ -79,7 +81,7 @@ var actionsSystem = (function(){
     },
 
     removePatience: function(event){
-      console.log("event " + event.target);
+      //console.log("event " + event.target);
         event.target.parentNode.classList.add("fadeOut");
         setTimeout(function(){
             event.target.parentNode.remove();
@@ -222,6 +224,7 @@ var registerPatience = (function(){
         registerPatience.exibeMensagensDeErro(erros);
         return;
       }
+      console.log(paciente);
       // chamando a nova função adicionaPacienteNaTabela
       registerPatience.adicionaPacienteNaTabela(paciente);
       form.submit();
