@@ -161,6 +161,6 @@ button[disabled=disabled], button:disabled {
 	margin: 20px auto;
 }
 
-.info-remove, .info-editar{
+.info-delete, .info-editar{
 	cursor: pointer;
 }

@@ -5,6 +5,8 @@ var tabela = document.querySelector("#tabela-pacientes");
 var campoFiltro = document.querySelector("#filtrar-tabela");
 var botaoBuscaPaciente = document.querySelector("#buscar-pacientes");
 var botaoAddPaciente = document.querySelector("#adicionar-paciente");
+var clickEditPatient = document.querySelector(".info-editar");
+var clickDeletePatient = document.querySelector(".info-delete");
 
   tabela.addEventListener("click", function(event){
     itemClicado = event.target.parentNode.classList;
@@ -35,9 +37,8 @@ var botaoAddPaciente = document.querySelector("#adicionar-paciente");
 var actionsSystem = (function(){
 
   return{
-
+    
     searchPatience: function(){
-
       var xhr = new XMLHttpRequest();
       xhr.open("GET", "https://api-pacientes.herokuapp.com/pacientes");
       xhr.addEventListener("load", function(){
@@ -97,7 +98,7 @@ var actionsSystem = (function(){
         pacienteTr.appendChild(actionsSystem.montaTd(paciente.altura, "info-altura"));
         pacienteTr.appendChild(actionsSystem.montaTd(paciente.gordura, "info-gordura"));
         pacienteTr.appendChild(actionsSystem.montaTd(paciente.imc, "info-imc"));
-        pacienteTr.appendChild(actionsSystem.montaTd("X", "info-remove"));
+        pacienteTr.appendChild(actionsSystem.montaTd("X", "info-delete"));
     
         return pacienteTr;
     },

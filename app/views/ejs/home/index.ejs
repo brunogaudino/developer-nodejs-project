@@ -28,21 +28,21 @@
 								<th>Altura(m)</th>
 								<th>Gordura Corporal(%)</th>
 								<th>IMC</th>
-								<th>Editar</th>
+								<!-- <th>Editar</th> -->
 								<th>Remover</th>
 							</tr>
 						</thead>
 						<tbody id="tabela-pacientes">
 							<%for(i=0; i<patients.length; i++) {%>
-								<pre>OI--<%=patients[i].nome %></pre>
+								<pre>OI--<%=patients[i]._id %></pre>
 								<tr class="paciente">
 									<td class="info-nome"><%=patients[i].nome %></td>
 									<td class="info-peso"><%=patients[i].peso %></td>
 									<td class="info-altura"><%=patients[i].altura %></td>
 									<td class="info-gordura"><%=patients[i].gordura %></td>
 									<td class="info-imc">0</td>
-									<td class="info-editar"><a href="/edit/<%=patients[i].nome %>">Edit</a></td>
-									<td class="info-remove"><a href="/remove/<%=patients[i].nome %>">X</a></td>
+									<!-- <td class="info-editar"><a href="/edit/<%=patients[i]._id %>">Edit</a></td> -->
+									<td class="info-delete"><a href="/delete/<%=patients[i]._id %>">X</a></td>
 								</tr>
 							<%}%>
 						</tbody>
