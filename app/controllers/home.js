@@ -11,22 +11,25 @@ module.exports.index = function(application, req, res){
 module.exports.cadasterPatient = function(application, req, res){
 
     var dataForm = req.body;
+    var timestamp = new Date().getTime();
+    dataForm.idTimeStamp = timestamp.toString();
+
     var connection = application.config.dbConnection;
     var patientDAO = new application.app.models.PatientDAO(connection);
-    
-    //console.log(dataForm);
+
+    //console.log(dataForm); 
+    //console.log("timeStamp " + timestamp);
     patientDAO.insertPatient(dataForm);
 
     res.redirect("/");
 }
 
 module.exports.deletePatient = function(application, req, res){
-    var idPatient = req.params;
-    // console.log("Ops I did again");
-    // console.log(idPatient);
+    var idPatient = req.params.idTimeStamp.toString();
     var connection = application.config.dbConnection;
     var patientDAO = new application.app.models.PatientDAO(connection);
-    patientDAO.deletePatient(idPatient);
+    console.log(req.params);
+    //patientDAO.deletePatient(idPatient);
     res.redirect("/");
 }
 

@@ -8,7 +8,7 @@ module.exports = function(application){
         application.app.controllers.home.cadasterPatient(application,req,res);
     });
 
-    application.get('/delete/:_id', function(req, res){
+    application.get('/delete/:idTimeStamp', function(req, res){
         application.app.controllers.home.deletePatient(application,req,res);
     });
 

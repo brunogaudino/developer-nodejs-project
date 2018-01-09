@@ -1,19 +1,28 @@
 window.onload = function(){
 
 var pacientes = document.querySelectorAll(".paciente");
-var tabela = document.querySelector("#tabela-pacientes");
+var tabela = document.querySelector("#tabela-pacientes") || false;
 var campoFiltro = document.querySelector("#filtrar-tabela");
 var botaoBuscaPaciente = document.querySelector("#buscar-pacientes");
 var botaoAddPaciente = document.querySelector("#adicionar-paciente");
 var clickEditPatient = document.querySelector(".info-editar");
 var clickDeletePatient = document.querySelector(".info-delete");
 
-  tabela.addEventListener("click", function(event){
-    itemClicado = event.target.parentNode.classList;
-    console.log( event.target.node );
-    //actionsSystem.removePatience(event);
-  });
+  if (tabela.childElementCount == 0) {
+    document.querySelector("table").classList.add("invisivel");
+    document.querySelector("#filtro").classList.add("invisivel");
+  }else{
+    document.querySelector("table").classList.remove("invisivel");
+    document.querySelector("#filtro").classList.remove("invisivel");
+  }
 
+  if(tabela){
+    tabela.addEventListener("click", function(event){
+      itemClicado = event.target.parentNode.classList;
+      //console.log( event.target.node );
+      actionsSystem.removePatience(event);
+    });
+  }
   campoFiltro.addEventListener("input", function(){
     actionsSystem.filterPatience(this);
   });
@@ -82,7 +91,7 @@ var actionsSystem = (function(){
     },
 
     removePatience: function(event){
-      //console.log("event " + event.target);
+        //event.preventDefault();
         event.target.parentNode.classList.add("fadeOut");
         setTimeout(function(){
             event.target.parentNode.remove();
@@ -225,7 +234,7 @@ var registerPatience = (function(){
         registerPatience.exibeMensagensDeErro(erros);
         return;
       }
-      console.log(paciente);
+      //console.log(paciente);
       // chamando a nova função adicionaPacienteNaTabela
       registerPatience.adicionaPacienteNaTabela(paciente);
       form.submit();

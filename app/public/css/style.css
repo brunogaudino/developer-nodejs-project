@@ -164,3 +164,10 @@ button[disabled=disabled], button:disabled {
 .info-delete, .info-editar{
 	cursor: pointer;
 }
+
+.aviso{
+	font-size: 2.0em;
+	margin: 20px auto;
+	border: 0px;
+	padding: 0px;
+}
