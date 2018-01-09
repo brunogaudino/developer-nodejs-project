@@ -4,8 +4,8 @@ module.exports = function(application){
         application.app.controllers.home.index(application,req,res);
     });
 
-    application.post('/cadaster', function(req, res){
-        application.app.controllers.home.cadasterPatient(application,req,res);
+    application.post('/insert', function(req, res){
+        application.app.controllers.home.insertPatient(application,req,res);
     });
 
     application.get('/delete/:idTimeStamp', function(req, res){

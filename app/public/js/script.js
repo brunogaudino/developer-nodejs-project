@@ -1,12 +1,12 @@
 window.onload = function(){
 
-var pacientes = document.querySelectorAll(".paciente");
-var tabela = document.querySelector("#tabela-pacientes") || false;
-var campoFiltro = document.querySelector("#filtrar-tabela");
-var botaoBuscaPaciente = document.querySelector("#buscar-pacientes");
-var botaoAddPaciente = document.querySelector("#adicionar-paciente");
-var clickEditPatient = document.querySelector(".info-editar");
-var clickDeletePatient = document.querySelector(".info-delete");
+  var pacientes = document.querySelectorAll(".paciente");
+  var tabela = document.querySelector("#tabela-pacientes") || false;
+  var campoFiltro = document.querySelector("#filtrar-tabela");
+  var botaoBuscaPaciente = document.querySelector("#buscar-pacientes");
+  var botaoAddPaciente = document.querySelector("#adicionar-paciente");
+  var clickEditPatient = document.querySelector(".info-editar");
+  var clickDeletePatient = document.querySelector(".info-delete");
 
   if (tabela.childElementCount == 0) {
     document.querySelector("table").classList.add("invisivel");
@@ -92,7 +92,7 @@ var actionsSystem = (function(){
 
     removePatience: function(event){
         //event.preventDefault();
-        event.target.parentNode.classList.add("fadeOut");
+        //event.target.parentNode.classList.add("fadeOut");
         setTimeout(function(){
             event.target.parentNode.remove();
         }, 500);

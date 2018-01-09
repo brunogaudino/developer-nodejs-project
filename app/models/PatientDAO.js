@@ -5,7 +5,6 @@ function PatientDAO(connection){
 PatientDAO.prototype.insertPatient = function(dataPatient){
     this._connection.open(function(err, mongoclient){
         mongoclient.collection("patients", function(err, collection){
-            //console.log(dataPatient);
             collection.insert(dataPatient);
 
             mongoclient.close();
@@ -25,11 +24,9 @@ PatientDAO.prototype.listPatient = function(callback){
 }
 
 PatientDAO.prototype.deletePatient = function(idPatient){
-var envite = {'idTimeStamp': idPatient};
     this._connection.open(function(err, mongoclient){
         mongoclient.collection("patients", function(err, collection){
-            console.log(envite);
-            collection.remove(envite);
+            collection.remove({'idTimeStamp': idPatient});
 
             mongoclient.close();
         });
