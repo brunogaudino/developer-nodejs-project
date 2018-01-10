@@ -29,8 +29,8 @@
 								<th>Altura(m)</th>
 								<th>Gordura Corporal(%)</th>
 								<th>IMC</th>
-								<!-- <th>Editar</th> -->
 								<th>Remover</th>
+								<!-- <th>Editar</th> -->
 							</tr>
 						</thead>
 						<tbody id="tabela-pacientes">
@@ -42,8 +42,10 @@
 										<td class="info-altura"><%=patients[i].altura %></td>
 										<td class="info-gordura"><%=patients[i].gordura %></td>
 										<td class="info-imc">0</td>
-										<!-- <td class="info-editar"><a href="/edit/<%=patients[i]._id %>">Edit</a></td> -->
-										<td class="info-delete"><a href="/delete/<%=patients[i].idTimeStamp %>">X</a></td>
+										<td class="info-delete"><a href="/delete/<%=patients[i].idTimeStamp%>">X</a></td>
+										<!-- <td class="info-editar">
+											<a href="/edit/<%=patients[i].idTimeStamp%>">Editar</a>
+										</td> -->
 									</tr>
 								<%}%>
 							<%}%>
@@ -123,27 +125,12 @@
 		<section class="container">
 	    <h2 id="titulo-form">Adicionar novo paciente</h2>
 		<ul id="mensagem-de-erro"></ul>
-	    <form id="form-adiciona" action="/insert" method="POST">
-	        <!-- <div class="grupo"> -->			
-			<div>
-	            <label for="nome">Nome:</label>
-	            <input id="nome" name="nome" type="text" placeholder="digite o nome do seu paciente" class="campo">
-	        </div>
-	        <div>
-	            <label for="peso">Peso:</label>
-	            <input id="peso" name="peso" type="text" placeholder="digite o peso do seu paciente" class="campo campo-medio">
-	        </div>
-			<div>
-				<label for="altura">Altura:</label>
-	            <input id="altura" name="altura" type="text" placeholder="digite a altura do seu paciente" class="campo campo-medio">
-	        </div>
-	        <div>
-	            <label for="gordura">% de Gordura:</label>
-	            <input id="gordura" name="gordura" type="text" placeholder="digite a porcentagem de gordura do seu paciente" class="campo campo-medio">
-			</div>
-			<input type="hidden" name="idTimeStamp">
-	        <button id="adicionar-paciente" class="botao bto-principal">Adicionar</button>
-	    </form>
+		<%if(flagForm){%>
+			<% include form-edit %>
+		<%}else{%>
+			<% include form-insert %>
+		<%}%>
+
 	</section>
 
 		<script src="js/script.js"></script>

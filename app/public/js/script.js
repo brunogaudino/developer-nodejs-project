@@ -93,9 +93,9 @@ var actionsSystem = (function(){
     removePatience: function(event){
         //event.preventDefault();
         //event.target.parentNode.classList.add("fadeOut");
-        setTimeout(function(){
-            event.target.parentNode.remove();
-        }, 500);
+        // setTimeout(function(){
+        //     event.target.parentNode.remove();
+        // }, 500);
     },
 
     montaTr: function(paciente){
@@ -107,6 +107,7 @@ var actionsSystem = (function(){
         pacienteTr.appendChild(actionsSystem.montaTd(paciente.altura, "info-altura"));
         pacienteTr.appendChild(actionsSystem.montaTd(paciente.gordura, "info-gordura"));
         pacienteTr.appendChild(actionsSystem.montaTd(paciente.imc, "info-imc"));
+        pacienteTr.appendChild(actionsSystem.montaTd("Editar", "info-editar"));
         pacienteTr.appendChild(actionsSystem.montaTd("X", "info-delete"));
     
         return pacienteTr;
@@ -235,7 +236,7 @@ var registerPatience = (function(){
         return;
       }
       //console.log(paciente);
-      // chamando a nova função adicionaPacienteNaTabela
+      //chamando a nova função adicionaPacienteNaTabela
       registerPatience.adicionaPacienteNaTabela(paciente);
       form.submit();
       form.reset();
@@ -243,6 +244,7 @@ var registerPatience = (function(){
       mensagensErro.innerHTML = "";
 
     },
+
     adicionaPacienteNaTabela: function(paciente) {
         var pacienteTr = actionsSystem.montaTr(paciente);
         var tabela = document.querySelector("#tabela-pacientes");

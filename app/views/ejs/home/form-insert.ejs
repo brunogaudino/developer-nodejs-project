@@ -1,0 +1,21 @@
+<form id="form-adiciona" action="/insert" method="POST">
+    <!-- <div class="grupo"> -->			
+    <div>
+        <label for="nome">Nome:</label>
+        <input id="nome" name="nome" type="text" placeholder="digite o nome do seu paciente" class="campo">
+    </div>
+    <div>
+        <label for="peso">Peso:</label>
+        <input id="peso" name="peso" type="text" placeholder="digite o peso do seu paciente" class="campo campo-medio">
+    </div>
+    <div>
+        <label for="altura">Altura:</label>
+        <input id="altura" name="altura" type="text" placeholder="digite a altura do seu paciente" class="campo campo-medio">
+    </div>
+    <div>
+        <label for="gordura">% de Gordura:</label>
+        <input id="gordura" name="gordura" type="text" placeholder="digite a porcentagem de gordura do seu paciente" class="campo campo-medio">
+    </div>
+    <input type="hidden" name="idTimeStamp">
+    <button id="adicionar-paciente" class="botao bto-principal">Adicionar</button>
+</form>
