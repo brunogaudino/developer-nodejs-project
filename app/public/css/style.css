@@ -1,10 +1,12 @@
 *{
 	box-sizing: border-box;
+	transition: all .5s linear;
  }
 
 body{
 	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 	font-size: 14px;
+	opacity: 0;
 }
 
 header{
@@ -142,9 +144,20 @@ button[disabled=disabled], button:disabled {
 	margin-bottom: 10px;
 }
 
+.fadeIn{
+	opacity: 1;
+	display: block;
+	transition-duration: 0.8s;
+	transition-timing-function: ease-in;
+	transition-delay: 0.5s;
+}
+
 .fadeOut{
 	opacity: 0;
 	transition: 0.5s;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-out;
+	transition-delay: 0.3s;
 }
 
 #filtrar-tabela{
@@ -163,6 +176,28 @@ button[disabled=disabled], button:disabled {
 
 .info-delete, .info-editar{
 	cursor: pointer;
+}
+
+.info-editar a{
+	text-decoration: none;
+	color: white;
+	background: #008000;
+	padding: 10px;
+	display: inline-block;
+	width: 35px;
+	text-align: center;
+	border-radius: 50%;
+}
+
+.info-delete a{
+	text-decoration: none;
+	color: white;
+	background: #FF0000;
+	padding: 10px;
+	display: inline-block;
+	width: 35px;
+	text-align: center;
+	border-radius: 50%;
 }
 
 .aviso{

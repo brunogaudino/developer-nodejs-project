@@ -1,0 +1,77 @@
+db.patients.insert({ 
+    nome: 'Paulo',
+    peso: '100',
+    altura: '2.00',
+    gordura: '10',
+    idTimeStamp: '1515686460100' 
+})
+db.patients.insert({ 
+    nome: 'João',
+    peso: '80',
+    altura: '1.72',
+    gordura: '20',
+    idTimeStamp: '1515686460101'
+})
+db.patients.insert({ 
+    nome: 'Erica',
+    peso: '54',
+    altura: '1.54',
+    gordura: '10',
+    idTimeStamp: '1515686460102'
+})
+db.patients.insert({ 
+    nome: 'Douglas',
+    peso: '85',
+    altura: '1.73',
+    gordura: '34',
+    idTimeStamp: '1515686460103'
+})
+db.patients.insert({ 
+    nome: 'Tatiana',
+    peso: '46',
+    altura: '1.55',
+    gordura: '10',
+    idTimeStamp: '1515686460104'
+})
+db.patients.insert({ 
+    nome: 'Alda',
+    peso: '55',
+    altura: '1.60',
+    gordura: '15',
+    idTimeStamp: '1515686460105'
+})
+db.patients.insert({ 
+    nome: 'Eduard Blake',
+    peso: '90',
+    altura: '1.85',
+    gordura: '10',
+    idTimeStamp: '1515686460106'
+})
+db.patients.insert({ 
+    nome: 'Peter Parker',
+    peso: '60',
+    altura: '1.70',
+    gordura: '10',
+    idTimeStamp: '1515686460107'
+})
+db.patients.insert({ 
+    nome: 'Tony Stark',
+    peso: '80',
+    altura: '1.75',
+    gordura: '16',
+    idTimeStamp: '1515686460108'
+})
+db.patients.insert({ 
+    nome: 'Steve Rogers',
+    peso: '85',
+    altura: '1.79',
+    gordura: '26',
+    idTimeStamp: '1515686460109'
+})
+db.patients.insert({ 
+    nome: 'Adam Shifler',
+    peso: '56',
+    altura: '1.65',
+    gordura: '11',
+    idTimeStamp: '1515686460110'
+})

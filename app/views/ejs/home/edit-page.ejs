@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Aparecida Nutrição</title>
+		<link rel="icon" href="/image/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="../css/reset.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+	</head>
+	<body>
+
+		<header>
+			<div class="container">
+                <h1>Aparecida Nutrição</h1>
+			</div>
+		</header>
+		<main>
+			<!-- <section class="container">
+				<h2>Meus pacientes</h2>
+			</section> -->
+            <section class="container">
+                <h2 id="titulo-form">Atualizar dados do paciente</h2>
+        
+                <%if(!patients.length != 0){%>
+					<h2 class="aviso">
+                        Ouve algum erro, os dados do paciente não foram carregados!
+                    </h2>
+                <%}else{%>
+                    <form id="form-adiciona" action="/update" method="POST">
+                        <div>
+                            <label for="nome">Nome:</label>
+                            <input value="<%=patients[0].nome %>" id="nome" name="nome" type="text" placeholder="digite o nome do seu paciente" class="campo">
+                        </div>
+                        <div>
+                            <label for="peso">Peso:</label>
+                            <input id="peso" value="<%=patients[0].peso %>" name="peso" type="text" placeholder="digite o peso do seu paciente" class="campo campo-medio">                            
+                        </div>
+                        <div>
+                            <label for="altura">Altura:</label>
+                            <input id="altura" value="<%=patients[0].altura %>" name="altura" type="text" placeholder="digite a altura do seu paciente" class="campo campo-medio">                            
+                        </div>
+                        <div>
+                            <label for="gordura">% de Gordura:</label>
+                            <input id="gordura" value="<%=patients[0].gordura %>" name="gordura" type="text" placeholder="digite a porcentagem de gordura do seu paciente" class="campo campo-medio">
+                        </div>
+                        <input type="hidden" value="<%=patients[0].idTimeStamp%>" name="idTimeStamp">
+                        <button id="adicionar-paciente" class="botao bto-principal">Atualizar</button>
+                    </form>
+                <%}%>
+
+            </section>
+
+        </main>
+
+		<script src="../js/script.js"></script>
+	</body>
+</html>

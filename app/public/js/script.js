@@ -6,38 +6,40 @@ window.onload = function(){
   var botaoBuscaPaciente = document.querySelector("#buscar-pacientes");
   var botaoAddPaciente = document.querySelector("#adicionar-paciente");
   var clickEditPatient = document.querySelector(".info-editar");
-  var clickDeletePatient = document.querySelector(".info-delete");
+  var clickDeletePatient = document.querySelectorAll(".info-delete");
 
-  if (tabela.childElementCount == 0) {
-    document.querySelector("table").classList.add("invisivel");
-    document.querySelector("#filtro").classList.add("invisivel");
-  }else{
-    document.querySelector("table").classList.remove("invisivel");
-    document.querySelector("#filtro").classList.remove("invisivel");
-  }
+  document.querySelector('body').classList.add('fadeIn');
 
   if(tabela){
-    tabela.addEventListener("click", function(event){
-      itemClicado = event.target.parentNode.classList;
-      //console.log( event.target.node );
+    if (tabela.childElementCount == 0) {
+      document.querySelector("table").classList.add("invisivel");
+      document.querySelector("#filtro").classList.add("invisivel");
+    }else{
+      document.querySelector("table").classList.remove("invisivel");
+      document.querySelector("#filtro").classList.remove("invisivel");
+    }
+
+    campoFiltro.addEventListener("input", function(){
+      actionsSystem.filterPatience(this);
+    });
+  
+    botaoAddPaciente.addEventListener("click", function(event) {
+        event.preventDefault();
+        registerPatience.main(
+          document.querySelector("form#form-adiciona"),
+          registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")),
+          actionsSystem.montaTr(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona"))),
+          validationData.validaPaciente(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")))
+        );
+    });
+
+  };
+
+  for (var i = 0; i < clickDeletePatient.length; i++) {
+    clickDeletePatient[i].addEventListener("click", function(event){
       actionsSystem.removePatience(event);
     });
   }
-  campoFiltro.addEventListener("input", function(){
-    actionsSystem.filterPatience(this);
-  });
-
-  //console.log("Buscando Pacientes!");
-
-  botaoAddPaciente.addEventListener("click", function(event) {
-      event.preventDefault();
-      registerPatience.main(
-        document.querySelector("form#form-adiciona"),
-        registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")),
-        actionsSystem.montaTr(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona"))),
-        validationData.validaPaciente(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")))
-      );
-  });
 
   validationData.valid(pacientes);
 
@@ -91,11 +93,25 @@ var actionsSystem = (function(){
     },
 
     removePatience: function(event){
-        //event.preventDefault();
-        //event.target.parentNode.classList.add("fadeOut");
-        // setTimeout(function(){
-        //     event.target.parentNode.remove();
-        // }, 500);
+        event.preventDefault();
+        event.path[2].classList.add("fadeOut");
+        setTimeout(function(){
+          event.path[2].remove();
+          // var xhr = new XMLHttpRequest();
+          // xhr.open("POST", "\""+event.path[0].href+"\"");
+          // xhr.addEventListener("load", function(){
+          //   var erroAjax = document.querySelector("#erro-ajax");
+          //   if (xhr.status == 200) {
+          //     console.log("Status - " + xhr.status);
+          //   } else {
+          //     erroAjax.classList.remove("invisivel");
+          //   }
+          // });
+          // xhr.send();
+        }, 200);
+        setTimeout(function(){
+          window.location.href = event.target.href;
+        }, 700);
     },
 
     montaTr: function(paciente){

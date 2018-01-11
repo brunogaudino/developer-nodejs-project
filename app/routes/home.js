@@ -12,8 +12,12 @@ module.exports = function(application){
         application.app.controllers.home.deletePatient(application,req,res);
     });
 
-    // application.get('/edit/:idTimeStamp', function(req, res){
-    //    application.app.controllers.home.editPatient(application,req,res);
-    // });
+    application.get('/edit/:idTimeStamp', function(req, res){
+       application.app.controllers.home.editPatient(application,req,res);
+    });
+
+    application.post('/update', function(req, res){
+        application.app.controllers.home.updatePatient(application,req,res);
+    });
 
 }
