@@ -1,21 +1,55 @@
-<form id="form-adiciona" action="/insert" method="POST">
-    <!-- <div class="grupo"> -->			
-    <div>
-        <label for="nome">Nome:</label>
-        <input id="nome" name="nome" type="text" placeholder="digite o nome do seu paciente" class="campo">
-    </div>
-    <div>
-        <label for="peso">Peso:</label>
-        <input id="peso" name="peso" type="text" placeholder="digite o peso do seu paciente" class="campo campo-medio">
-    </div>
-    <div>
-        <label for="altura">Altura:</label>
-        <input id="altura" name="altura" type="text" placeholder="digite a altura do seu paciente" class="campo campo-medio">
-    </div>
-    <div>
-        <label for="gordura">% de Gordura:</label>
-        <input id="gordura" name="gordura" type="text" placeholder="digite a porcentagem de gordura do seu paciente" class="campo campo-medio">
-    </div>
-    <input type="hidden" name="idTimeStamp">
-    <button id="adicionar-paciente" class="botao bto-principal">Adicionar</button>
-</form>
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Aparecida Nutrição</title>
+		<link rel="icon" href="/image/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+
+		<header>
+			<div class="container">
+                <h1>Aparecida Nutrition</h1>
+			</div>
+		</header>
+        
+        <% include menu %>
+        
+        <main>
+
+            <section class="container">
+                <h2 id="titulo-form">Adicionar novo paciente</h2>
+                <ul id="mensagem-de-erro"></ul>
+
+                <form id="form-adiciona" action="/insert" method="POST">
+                    <!-- <div class="grupo"> -->			
+                    <div>
+                        <label for="nome">Nome:</label>
+                        <input id="nome" name="nome" type="text" placeholder="digite o nome do seu paciente" class="campo">
+                    </div>
+                    <div>
+                        <label for="peso">Peso:</label>
+                        <input id="peso" name="peso" type="text" placeholder="digite o peso do seu paciente" class="campo campo-medio">
+                    </div>
+                    <div>
+                        <label for="altura">Altura:</label>
+                        <input id="altura" name="altura" type="text" placeholder="digite a altura do seu paciente" class="campo campo-medio">
+                    </div>
+                    <div>
+                        <label for="gordura">% de Gordura:</label>
+                        <input id="gordura" name="gordura" type="text" placeholder="digite a porcentagem de gordura do seu paciente" class="campo campo-medio">
+                    </div>
+                    <input type="hidden" name="idTimeStamp">
+                    <button id="adicionar-paciente" class="botao bto-principal">Adicionar</button>
+                </form>
+            </section>
+			
+        </main>
+
+        <br><hr><br>
+
+		<script src="js/script.js"></script>
+	</body>
+</html>

@@ -2,10 +2,9 @@ module.exports.index = function(application, req, res){
 
     var connection = application.config.dbConnection;
     var patientDAO = new application.app.models.PatientDAO(connection);
-    var editForm = false;
 
     patientDAO.listPatient(function(error, result){
-        res.render("home/index", { patients: result, flagForm: editForm });
+        res.render("home/index", { patients: result});
     });
 }
 
@@ -39,7 +38,7 @@ module.exports.editPatient = function(application, req, res){
     var patientDAO = new application.app.models.PatientDAO(connection);
 
     patientDAO.editPatient(req.params.idTimeStamp.toString(), function(error, result){
-       res.render("home/edit-page", { patients: result});
+       res.render("home/form-edit", { patients: result});
     });
 
 }
@@ -52,5 +51,11 @@ module.exports.updatePatient = function(application, req, res){
     patientDAO.updatePatient(req.body);
 
     res.redirect("/");
+
+}
+
+module.exports.cadasterPatient = function(application, req, res){
+    
+    res.render("home/form-insert");
 
 }

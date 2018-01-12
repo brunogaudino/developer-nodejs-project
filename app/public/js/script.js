@@ -8,32 +8,34 @@ window.onload = function(){
   var clickEditPatient = document.querySelector(".info-editar");
   var clickDeletePatient = document.querySelectorAll(".info-delete");
 
-  document.querySelector('body').classList.add('fadeIn');
+  document.querySelector('main').classList.add('fadeIn');
 
   if(tabela){
     if (tabela.childElementCount == 0) {
       document.querySelector("table").classList.add("invisivel");
-      document.querySelector("#filtro").classList.add("invisivel");
+      document.querySelector("#filter").classList.add("invisivel");
     }else{
       document.querySelector("table").classList.remove("invisivel");
-      document.querySelector("#filtro").classList.remove("invisivel");
+      document.querySelector("#filter").classList.remove("invisivel");
     }
 
     campoFiltro.addEventListener("input", function(){
       actionsSystem.filterPatience(this);
     });
-  
-    botaoAddPaciente.addEventListener("click", function(event) {
-        event.preventDefault();
-        registerPatience.main(
-          document.querySelector("form#form-adiciona"),
-          registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")),
-          actionsSystem.montaTr(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona"))),
-          validationData.validaPaciente(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")))
-        );
-    });
 
   };
+  
+  if (botaoAddPaciente) {
+    botaoAddPaciente.addEventListener("click", function(event) {
+      event.preventDefault();
+      registerPatience.main(
+        document.querySelector("form#form-adiciona"),
+        registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")),
+        actionsSystem.montaTr(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona"))),
+        validationData.validaPaciente(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-adiciona")))
+      );
+    }); 
+  }
 
   for (var i = 0; i < clickDeletePatient.length; i++) {
     clickDeletePatient[i].addEventListener("click", function(event){
@@ -96,18 +98,7 @@ var actionsSystem = (function(){
         event.preventDefault();
         event.path[2].classList.add("fadeOut");
         setTimeout(function(){
-          event.path[2].remove();
-          // var xhr = new XMLHttpRequest();
-          // xhr.open("POST", "\""+event.path[0].href+"\"");
-          // xhr.addEventListener("load", function(){
-          //   var erroAjax = document.querySelector("#erro-ajax");
-          //   if (xhr.status == 200) {
-          //     console.log("Status - " + xhr.status);
-          //   } else {
-          //     erroAjax.classList.remove("invisivel");
-          //   }
-          // });
-          // xhr.send();
+          event.path[2].remove();        
         }, 200);
         setTimeout(function(){
           window.location.href = event.target.href;
@@ -208,6 +199,7 @@ var validationData = (function(){
 
     validaPaciente: function(paciente){
       
+
         var erro = [];
       
         if (paciente.nome.length == 0) {
@@ -251,9 +243,9 @@ var registerPatience = (function(){
         registerPatience.exibeMensagensDeErro(erros);
         return;
       }
-      //console.log(paciente);
+
       //chamando a nova função adicionaPacienteNaTabela
-      registerPatience.adicionaPacienteNaTabela(paciente);
+      //registerPatience.adicionaPacienteNaTabela(paciente);
       form.submit();
       form.reset();
       var mensagensErro = document.querySelector("#mensagem-de-erro");
@@ -262,9 +254,9 @@ var registerPatience = (function(){
     },
 
     adicionaPacienteNaTabela: function(paciente) {
-        var pacienteTr = actionsSystem.montaTr(paciente);
-        var tabela = document.querySelector("#tabela-pacientes");
-        tabela.appendChild(pacienteTr);
+      var pacienteTr = actionsSystem.montaTr(paciente);
+      var tabela = document.querySelector("#tabela-pacientes");
+      tabela.appendChild(pacienteTr);
     },
 
     exibeMensagensDeErro: function(erros){

@@ -6,6 +6,10 @@
 body{
 	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 	font-size: 14px;
+	/* opacity: 0; */
+}
+
+main{
 	opacity: 0;
 }
 
@@ -13,7 +17,6 @@ header{
 	background-color: #333;
 	height: 3em;
 	color: #FFF;
-	margin-bottom: 1em;
 }
 
 header h1{
@@ -85,6 +88,7 @@ label{
 	border: 1px solid #ccc;
 	padding: .7em;
 	width: 100%;
+	border-radius: 10px;
 }
 
 .campo-medio{
@@ -100,25 +104,26 @@ label{
 
 button{
 	padding: .5em 2em;
-	border: 0;
-	border-bottom: 3px solid;
 	font-size: 1.2em;
 	cursor: pointer;
 	margin: 0;
 	margin-top: -3px;
 	color: #fff;
 	background-color:#0c8cd3;
+	border: 0;
+	border-bottom: 3px solid;
 	border-color: #04324c;
 	width: 50%;
     display: block;
     clear: both;
     margin: 10px 0px;
-
 }
 
-button:active{
+button:active,
+button:hover{
 	margin-top:0px;
 	border: 0;
+	border-color: #0c8cd3;
 }
 
 button[disabled=disabled], button:disabled {
@@ -161,6 +166,7 @@ button[disabled=disabled], button:disabled {
 }
 
 #filtrar-tabela{
+	padding: 10px;
 	width: 200px;
 	height: 35px;
 	margin-bottom: 10px;
@@ -181,7 +187,7 @@ button[disabled=disabled], button:disabled {
 .info-editar a{
 	text-decoration: none;
 	color: white;
-	background: #008000;
+	background: #0c8cd3;
 	padding: 10px;
 	display: inline-block;
 	width: 35px;
@@ -192,7 +198,7 @@ button[disabled=disabled], button:disabled {
 .info-delete a{
 	text-decoration: none;
 	color: white;
-	background: #FF0000;
+	background: #FF6347;
 	padding: 10px;
 	display: inline-block;
 	width: 35px;
@@ -205,4 +211,37 @@ button[disabled=disabled], button:disabled {
 	margin: 20px auto;
 	border: 0px;
 	padding: 0px;
+}
+
+nav{
+	border-bottom: 1px solid #000;
+	margin-bottom: 15px;
+}
+
+ul#menu-links{
+	list-style-position: inside;
+	margin: 10px auto 10px auto;
+	padding: 10px 5px;
+	text-align: center;
+}
+
+ul#menu-links li{
+	display: inline;
+	margin: 0px 5px;
+}
+
+ul#menu-links li a{
+	color: #fff;
+	text-decoration: none;
+	padding: 10px;
+	background: #0c8cd3;
+	border-top: 3px solid #04324c;
+	border-bottom: 3px solid #04324c;
+	border-radius: 15px;
+}
+
+ul#menu-links li a:active,
+ul#menu-links li a:hover{
+	border-top: 3px solid #0c8cd3;
+	border-bottom: 3px solid #0c8cd3;
 }

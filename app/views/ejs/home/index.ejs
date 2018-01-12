@@ -11,42 +11,49 @@
 
 		<header>
 			<div class="container">
-				<h1>Aparecida Nutrição</h1>
+				<h1>Aparecida Nutrition</h1>
 			</div>
 		</header>
+
+		<% include menu %>
+
 		<main>
 			<section class="container">
 				<h2>Meus pacientes</h2>
-				<div id="filtro">
+				<div id="filter">
 					<label for="filtrar-tabela">Filtrar:</label>
-					<input type="text" name="filtro" id="filtrar-tabela" placeholder="Digite o nome do paciente">
+					<input type="text" name="filter" id="filtrar-tabela" placeholder="Digite o nome do paciente">
 				</div>	
 					<table>
 						<thead>
 							<tr>
 								<th>Nome</th>
-								<th>Peso(kg)</th>
-								<th>Altura(m)</th>
+								<!-- <th>Peso(kg)</th>
+								<th>Altura(m)</th> -->
 								<th>Gordura Corporal(%)</th>
 								<th>IMC</th>
-								<th>Remover</th>
 								<th>Editar</th>
+								<th>Remover</th>
 							</tr>
 						</thead>
 						<tbody id="tabela-pacientes">
 							<%if(patients.length > 0){%>
 								<%for(i=0; i<patients.length; i++) {%>
 									<tr class="paciente">
-										<td class="info-nome"><%=patients[i].nome %></td>
-										<td class="info-peso"><%=patients[i].peso %></td>
-										<td class="info-altura"><%=patients[i].altura %></td>
+										<td class="info-nome">
+											<%=patients[i].nome %>
+											<div class="info-peso invisivel"><%=patients[i].peso %></div>
+											<div class="info-altura invisivel"><%=patients[i].altura %></div>
+										</td>
+										<!-- <td class="info-peso"><%=patients[i].peso %></td>
+										<td class="info-altura"><%=patients[i].altura %></td> -->
 										<td class="info-gordura"><%=patients[i].gordura %></td>
 										<td class="info-imc">0</td>
-										<td class="info-delete">
-											<a href="/delete/<%=patients[i].idTimeStamp%>">X</a>
-										</td>
 										<td class="info-editar">
 											<a href="/edit/<%=patients[i].idTimeStamp%>">E</a>
+										</td>
+										<td class="info-delete">
+											<a href="/delete/<%=patients[i].idTimeStamp%>">X</a>
 										</td>
 									</tr>
 								<%}%>
@@ -64,16 +71,7 @@
 
 		</main>
 
-<br>
-<hr>
-<br>
-		<section class="container">
-	    <h2 id="titulo-form">Adicionar novo paciente</h2>
-		<ul id="mensagem-de-erro"></ul>
-
-		<% include form-insert %>
-
-	</section>
+		<br><hr><br>
 
 		<script src="js/script.js"></script>
 	</body>

@@ -1,4 +1,13 @@
 db.patients.insert({ 
+    nome: 'Testando',
+    peso: '70',
+    altura: '1.75',
+    gordura: '11',
+    idTimeStamp: '1515686460111'
+})
+
+
+db.patients.insert({ 
     nome: 'Paulo',
     peso: '100',
     altura: '2.00',

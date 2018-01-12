@@ -11,16 +11,17 @@
 
 		<header>
 			<div class="container">
-                <h1>Aparecida Nutrição</h1>
+               <h1>Aparecida Nutrition</h1>
 			</div>
-		</header>
+        </header>
+        
+        <% include menu %>
+
 		<main>
-			<!-- <section class="container">
-				<h2>Meus pacientes</h2>
-			</section> -->
             <section class="container">
                 <h2 id="titulo-form">Atualizar dados do paciente</h2>
-        
+                <ul id="mensagem-de-erro"></ul>
+       
                 <%if(!patients.length != 0){%>
 					<h2 class="aviso">
                         Ouve algum erro, os dados do paciente não foram carregados!
@@ -51,6 +52,8 @@
             </section>
 
         </main>
+
+        <br><hr><br>
 
 		<script src="../js/script.js"></script>
 	</body>
