@@ -44,6 +44,7 @@ window.onload = function(){
   }
 
   validationData.valid(pacientes);
+  actionsSystem.maskAddress();
 
 };// end - window.onload
 
@@ -125,7 +126,64 @@ var actionsSystem = (function(){
       td.textContent = dado;
       td.classList.add(classe);
       return td;
-    }
+    },
+
+    maskAddress: function(){
+
+      var inputCep = document.getElementById("cep");
+      if(inputCep){
+        inputCep.addEventListener("keyup", function(event){
+          var maskFormat = '#####-###';
+          var exitValue = maskFormat.substring(1,0);
+          var textValue = maskFormat.substring(inputCep.value.length);
+          if (textValue.substring(0,1) != exitValue){
+            inputCep.value += textValue.substring(0,1);
+          }
+        });
+
+        inputCep.addEventListener("keyup", function(event){
+          if(inputCep.value.length == 9) {
+
+            var xhr = new XMLHttpRequest();
+            var cep = inputCep.value;
+            xhr.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+cep+"&key=AIzaSyAiAhqpTRksGYXUWcYTtTTskxsRv_x-pJE");
+            xhr.addEventListener("load", function(){
+              var erroAjax = document.querySelector("#erro-ajax");
+              if(xhr.status == 200){
+                  var endereco = JSON.parse(xhr.responseText);
+                  var coordenates = {
+                    lat: endereco.results[0].geometry.location.lat, 
+                    lng: endereco.results[0].geometry.location.lng
+                  };
+
+                  var latitude = document.getElementById("latitude").value = coordenates.lat;
+                  var longitude = document.getElementById("longitude").value = coordenates.lng;
+
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 16,
+                    center: coordenates
+                  });
+
+                  var marker = new google.maps.Marker({
+                    position: coordenates,
+                    map: map
+                  });
+
+                  document.getElementById("map").classList.add("visivel");
+
+              } else {
+                console.log(erroAjax);
+              }
+            });
+            xhr.send();
+
+          }//end - if valida tamanho length
+
+        });
+
+      }//end - if
+
+    }//maskAddress
 
   } // end - return
 
@@ -153,14 +211,12 @@ var validationData = (function(){
         var alturaEhValida = validationData.validaAltura(altura);
 
         if (!pesoEhValido) {
-          console.log("Peso inválido!");
           pesoEhValido = false;
           tdImc.textContent = "Peso inválido!";
           paciente.classList.add("paciente-invalido");
         }
 
         if (!alturaEhValida) {
-          console.log("Altura inválida!");
           alturaEhValida = false;
           tdImc.textContent = "Altura inválida!";
           paciente.classList.add("paciente-invalido");
@@ -198,7 +254,6 @@ var validationData = (function(){
     },
 
     validaPaciente: function(paciente){
-      
 
         var erro = [];
       
@@ -225,10 +280,14 @@ var validationData = (function(){
         if (paciente.altura.length == 0) {
           erro.push("A altura não pode ser em branco!");
         }
-      
+
+        if (paciente.endereco[0].cep == 0 || paciente.endereco[0].cep < 9) {
+          erro.push("O cep está incorreto!");
+        }
+
         return erro;
       
-      }
+      }//valida paciente
 
   }//end - return
 
@@ -238,7 +297,6 @@ var validationData = (function(){
 var registerPatience = (function(){
   return{
     main: function(form, paciente, pacienteTr, erros){
-
       if (erros.length > 0) {
         registerPatience.exibeMensagensDeErro(erros);
         return;
@@ -278,7 +336,12 @@ var registerPatience = (function(){
             peso : form.peso.value,
             altura : form.altura.value,
             gordura : form.gordura.value,
-            imc : validationData.calculaImc(form.peso.value, form.altura.value)
+            imc : validationData.calculaImc(form.peso.value, form.altura.value),
+            endereco : [{
+              cep : form.cep.value,
+              lat: form.latitude.value,
+              long: form.longitude.value
+            }]
         }
         return paciente;
     }

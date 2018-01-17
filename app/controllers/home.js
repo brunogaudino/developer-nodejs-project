@@ -54,6 +54,17 @@ module.exports.updatePatient = function(application, req, res){
 
 }
 
+module.exports.updatePatient = function(application, req, res){
+    
+    var connection = application.config.dbConnection;
+    var patientDAO = new application.app.models.PatientDAO(connection);
+
+    patientDAO.updatePatient(req.body);
+
+    res.redirect("/");
+
+}
+
 module.exports.cadasterPatient = function(application, req, res){
     
     res.render("home/form-insert");

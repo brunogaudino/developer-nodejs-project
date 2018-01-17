@@ -5,10 +5,10 @@
 		<title>Aparecida Nutrição</title>
 		<link rel="icon" href="/image/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiAhqpTRksGYXUWcYTtTTskxsRv_x-pJE" async defer></script>
+    </head>
 	<body>
-
 		<header>
 			<div class="container">
                 <h1>Aparecida Nutrition</h1>
@@ -16,9 +16,9 @@
 		</header>
         
         <% include menu %>
-        
-        <main>
 
+        <main>
+            
             <section class="container">
                 <h2 id="titulo-form">Adicionar novo paciente</h2>
                 <ul id="mensagem-de-erro"></ul>
@@ -41,7 +41,23 @@
                         <label for="gordura">% de Gordura:</label>
                         <input id="gordura" name="gordura" type="text" placeholder="digite a porcentagem de gordura do seu paciente" class="campo campo-medio">
                     </div>
+                    <div>
+                        <label for="cep">CEP:</label>
+                        <input id="cep" name="cep" type="text" placeholder="digite o cep" class="campo campo-medio" maxlength="9">
+                    </div>
+                    <div id="map"></div>
+                    <!-- <div>
+                        <label for="endereco">Endereço:</label>
+                        <input id="endereco" name="endereco" type="text" placeholder="digite o endereço" class="campo campo-medio">
+                    </div>
+                    
+                    <div>
+                        <label for="cidade">Cidade:</label>
+                        <input id="cidade" name="cidade" type="text" placeholder="digite o cidade" class="campo campo-medio">
+                    </div> -->
                     <input type="hidden" name="idTimeStamp">
+                    <input type="hidden" name="latitude" id="latitude">
+                    <input type="hidden" name="longitude" id="longitude">
                     <button id="adicionar-paciente" class="botao bto-principal">Adicionar</button>
                 </form>
             </section>

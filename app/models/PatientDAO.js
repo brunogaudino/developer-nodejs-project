@@ -14,9 +14,21 @@ PatientDAO.prototype.listPatient = function(callback){
 }
 
 PatientDAO.prototype.insertPatient = function(dataPatient){
+    var objPatient = {
+        nome: dataPatient.nome,
+        peso : dataPatient.peso,
+        altura : dataPatient.altura,
+        gordura : dataPatient.gordura,
+        idTimeStamp: dataPatient.idTimeStamp,
+        endereco : [{
+            cep : dataPatient.cep,
+            lat: dataPatient.latitude,
+            long: dataPatient.longitude
+        }]
+    }
     this._connection.open(function(err, mongoclient){
         mongoclient.collection("patients", function(err, collection){
-            collection.insert(dataPatient);
+            collection.insert(objPatient);
 
             mongoclient.close();
         });
