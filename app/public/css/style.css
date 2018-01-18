@@ -22,7 +22,7 @@ main{
 
 header{
 	background-color: #333;
-	height: 3em;
+	height: 6em;
 	color: #FFF;
 }
 
@@ -44,10 +44,24 @@ header .container:before{
 	vertical-align:	middle;
 }
 
+header .container:after{
+	content: "";
+	position: absolute;
+	top: 5px;
+	right: 0px;
+	display: block;
+	width: 107px;
+	height: 72px;
+	background-image: url(../image/logo.png);
+	background-color: #fff;
+	border-radius: 10px;
+}
+
 .container{
 	width: 80%;
 	height: 100%;
 	margin: 0 auto;
+	position: relative;
 }
 
 section{
@@ -217,6 +231,7 @@ button[disabled=disabled], button:disabled {
 	margin: 20px auto;
 	border: 0px;
 	padding: 0px;
+	text-align: center;
 }
 
 nav{

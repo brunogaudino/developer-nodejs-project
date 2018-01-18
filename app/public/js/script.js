@@ -140,10 +140,8 @@ var actionsSystem = (function(){
             inputCep.value += textValue.substring(0,1);
           }
         });
-
         inputCep.addEventListener("keyup", function(event){
           if(inputCep.value.length == 9) {
-
             var xhr = new XMLHttpRequest();
             var cep = inputCep.value;
             xhr.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+cep+"&key=AIzaSyAiAhqpTRksGYXUWcYTtTTskxsRv_x-pJE");
@@ -155,31 +153,13 @@ var actionsSystem = (function(){
                     lat: endereco.results[0].geometry.location.lat, 
                     lng: endereco.results[0].geometry.location.lng
                   };
-
                   var latitude = document.getElementById("latitude").value = coordenates.lat;
                   var longitude = document.getElementById("longitude").value = coordenates.lng;
-
-                  var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 16,
-                    center: coordenates
-                  });
-
-                  var marker = new google.maps.Marker({
-                    position: coordenates,
-                    map: map
-                  });
-
-                  document.getElementById("map").classList.add("visivel");
-
-              } else {
-                console.log(erroAjax);
-              }
+              }else{console.log(erroAjax);}
             });
             xhr.send();
-
           }//end - if valida tamanho length
-
-        });
+        });//end input
 
       }//end - if
 
