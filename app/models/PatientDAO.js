@@ -61,7 +61,8 @@ PatientDAO.prototype.editPatient = function(idPatient, callback){
 PatientDAO.prototype.updatePatient = function(dataPatient, callback){
     this._connection.open(function(err, mongoclient){
         mongoclient.collection("patients", function(err, collection){
-            collection.update({'idTimeStamp': dataPatient.idTimeStamp},{$set: dataPatient});
+            console.log(dataPatient);
+            //collection.update({'idTimeStamp': dataPatient.idTimeStamp},{$set: dataPatient});
 
             mongoclient.close();
         });

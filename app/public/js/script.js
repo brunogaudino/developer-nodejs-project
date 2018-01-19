@@ -5,6 +5,7 @@ window.onload = function(){
   var campoFiltro = document.querySelector("#filtrar-tabela");
   var botaoBuscaPaciente = document.querySelector("#buscar-pacientes");
   var botaoAddPaciente = document.querySelector("#adicionar-paciente");
+  var botaoUpdatePaciente = document.querySelector("#update-paciente");
   var clickEditPatient = document.querySelector(".info-editar");
   var clickDeletePatient = document.querySelectorAll(".info-delete");
 
@@ -36,6 +37,44 @@ window.onload = function(){
       );
     }); 
   }
+
+  if (botaoUpdatePaciente){
+    botaoUpdatePaciente.addEventListener("click", function(event) {
+      event.preventDefault();
+      registerPatience.main(
+        document.querySelector("form#form-atualiza"),
+        registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-atualiza")),
+        actionsSystem.montaTr(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-atualiza"))),
+        validationData.validaPaciente(registerPatience.obtemPacienteDoFormulario(document.querySelector("#form-atualiza")))
+      );
+    }); 
+  }
+
+  //Localização em editar
+  var xhr = new XMLHttpRequest();
+  var cep = document.getElementById("cep").value;
+  xhr.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+cep+"&key=AIzaSyAiAhqpTRksGYXUWcYTtTTskxsRv_x-pJE");
+  xhr.addEventListener("load", function(){
+    var erroAjax = document.querySelector("#erro-ajax");
+    if(xhr.status == 200){
+      var latitude = Number(document.getElementById("latitude").value);
+      var longitude = Number(document.getElementById("longitude").value);
+      var uluru = {
+        lat: latitude, 
+        lng: longitude 
+      };
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: uluru
+      });
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+      });
+    }else{console.log(erroAjax);}
+  });
+  xhr.send();
 
   for (var i = 0; i < clickDeletePatient.length; i++) {
     clickDeletePatient[i].addEventListener("click", function(event){

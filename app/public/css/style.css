@@ -196,7 +196,8 @@ button[disabled=disabled], button:disabled {
 	display: none;
 }
 
-#form-adiciona div{
+#form-adiciona div,
+#form-atualiza div{
 	margin: 20px auto;
 }
 
@@ -268,12 +269,14 @@ ul#menu-links li a:hover{
 }
 
 #map {
-	/* display: none; */
-	opacity: 0;
+	/* display: none; 
+	opacity: 0;*/
 	transition: 1.5s;
 	transition-duration: 1.5s;
 	transition-timing-function: ease-out;
 	transition-delay: 0.3s;
+	width: 100%;
+	height: 400px;
 }
 
 .visivel{
