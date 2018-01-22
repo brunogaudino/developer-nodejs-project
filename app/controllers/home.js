@@ -50,7 +50,7 @@ module.exports.updatePatient = function(application, req, res){
 
     patientDAO.updatePatient(req.body);
 
-    //res.redirect("/");
+    res.redirect("/");
 
 }
 

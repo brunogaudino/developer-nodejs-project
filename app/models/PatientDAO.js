@@ -61,8 +61,20 @@ PatientDAO.prototype.editPatient = function(idPatient, callback){
 PatientDAO.prototype.updatePatient = function(dataPatient, callback){
     this._connection.open(function(err, mongoclient){
         mongoclient.collection("patients", function(err, collection){
-            console.log(dataPatient);
-            //collection.update({'idTimeStamp': dataPatient.idTimeStamp},{$set: dataPatient});
+            var objPatient = {
+                nome: dataPatient.nome,
+                peso : dataPatient.peso,
+                altura : dataPatient.altura,
+                gordura : dataPatient.gordura,
+                idTimeStamp: dataPatient.idTimeStamp,
+                endereco : [{
+                    cep : dataPatient.cep,
+                    lat: dataPatient.latitude,
+                    long: dataPatient.longitude
+                }]
+            };
+            console.log(objPatient);
+            collection.update({'idTimeStamp': dataPatient.idTimeStamp},{$set: objPatient});
 
             mongoclient.close();
         });

@@ -50,32 +50,6 @@ window.onload = function(){
     }); 
   }
 
-  //Localização em editar
-  var xhr = new XMLHttpRequest();
-  var cep = document.getElementById("cep").value;
-  xhr.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+cep+"&key=AIzaSyAiAhqpTRksGYXUWcYTtTTskxsRv_x-pJE");
-  xhr.addEventListener("load", function(){
-    var erroAjax = document.querySelector("#erro-ajax");
-    if(xhr.status == 200){
-      var latitude = Number(document.getElementById("latitude").value);
-      var longitude = Number(document.getElementById("longitude").value);
-      var uluru = {
-        lat: latitude, 
-        lng: longitude 
-      };
-
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: uluru
-      });
-      var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-      });
-    }else{console.log(erroAjax);}
-  });
-  xhr.send();
-
   for (var i = 0; i < clickDeletePatient.length; i++) {
     clickDeletePatient[i].addEventListener("click", function(event){
       actionsSystem.removePatience(event);
@@ -168,7 +142,6 @@ var actionsSystem = (function(){
     },
 
     maskAddress: function(){
-
       var inputCep = document.getElementById("cep");
       if(inputCep){
         inputCep.addEventListener("keyup", function(event){
@@ -199,9 +172,7 @@ var actionsSystem = (function(){
             xhr.send();
           }//end - if valida tamanho length
         });//end input
-
       }//end - if
-
     }//maskAddress
 
   } // end - return
