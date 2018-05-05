@@ -32,6 +32,14 @@
         // });//end input
 --------------------------------------------------------------------------------------
 
+use db_nutrition
+
+show dbs
+show collections
+db.patients.find();
+db.patients.dropDatabase()
+
+--------------------------------------------------------------------------------------
 db.patients.insert({ 
     nome: 'Testando',
     peso: '70',
