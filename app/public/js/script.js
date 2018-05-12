@@ -271,9 +271,9 @@ var validationData = (function(){
           erro.push("A altura não pode ser em branco!");
         }
 
-        if (paciente.endereco[0].cep == 0 || paciente.endereco[0].cep < 9) {
-          erro.push("O cep está incorreto!");
-        }
+        // if (paciente.endereco[0].cep == 0 || paciente.endereco[0].cep < 9) {
+        //   erro.push("O cep está incorreto!");
+        // }
 
         return erro;
       
@@ -291,7 +291,6 @@ var registerPatience = (function(){
         registerPatience.exibeMensagensDeErro(erros);
         return;
       }
-
       //chamando a nova função adicionaPacienteNaTabela
       //registerPatience.adicionaPacienteNaTabela(paciente);
       form.submit();
@@ -326,12 +325,12 @@ var registerPatience = (function(){
             peso : form.peso.value,
             altura : form.altura.value,
             gordura : form.gordura.value,
-            imc : validationData.calculaImc(form.peso.value, form.altura.value),
-            endereco : [{
-              cep : form.cep.value,
-              lat: form.latitude.value,
-              long: form.longitude.value
-            }]
+            imc : validationData.calculaImc(form.peso.value, form.altura.value)
+            // endereco : [{
+            //   cep : form.cep.value,
+            //   lat: form.latitude.value,
+            //   long: form.longitude.value
+            // }]
         }
         return paciente;
     }

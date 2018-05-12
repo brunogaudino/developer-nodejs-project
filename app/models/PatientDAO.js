@@ -52,7 +52,6 @@ PatientDAO.prototype.editPatient = function(idPatient, callback){
             collection.find({'idTimeStamp': idPatient}, function(err, patients){
                 patients.toArray(callback);
             });
-
             mongoclient.close();
         });
     });

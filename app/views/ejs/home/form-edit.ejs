@@ -45,23 +45,6 @@
                             <label for="gordura">% de Gordura:</label>
                             <input id="gordura" value="<%=patients[0].gordura %>" name="gordura" type="text" placeholder="digite a porcentagem de gordura do seu paciente" class="campo campo-medio">
                         </div>
-                        <div>
-                            <label for="cep">CEP:</label>
-                            <input id="cep" value="<%=patients[0].endereco[0].cep %>" name="cep" type="text" placeholder="digite o cep" class="campo campo-medio" maxlength="9">
-                        </div>
-                            <!--<div id="map"></div>
-                            <div>
-                                <label for="endereco">Endereço:</label>
-                                <input id="endereco" name="endereco" type="text" placeholder="digite o endereço" class="campo campo-medio">
-                            </div>
-                            
-                            <div>
-                                <label for="cidade">Cidade:</label>
-                                <input id="cidade" name="cidade" type="text" placeholder="digite o cidade" class="campo campo-medio">
-                            </div> -->
-                        <input type="hidden" value="<%=patients[0].idTimeStamp%>" name="idTimeStamp">
-                        <input type="hidden" value="<%=patients[0].endereco[0].lat %>" name="latitude" id="latitude">
-                        <input type="hidden" value="<%=patients[0].endereco[0].long %>" name="longitude" id="longitude">
                         <button id="update-paciente" class="botao bto-principal">Atualizar</button>
                     </form>
                 <%}%>
