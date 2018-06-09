@@ -17,6 +17,7 @@ module.exports = function(application){
     });
 
     application.post('/insert', function(req, res){
+        console.log("route insert");
         application.app.controllers.home.insertPatient(application,req,res);
     });
 

@@ -31,12 +31,23 @@
         //   }//end - if valida tamanho length
         // });//end input
 --------------------------------------------------------------------------------------
-
+Seta o banco a ser usado, se não existir ele cria:
 use db_nutrition
 
+Mostar bancos:
 show dbs
+
+Cria uma collection:
+db.createCollection("patients")
+
+Mostra as coleções:
 show collections
+
+Busca os dados:
 db.patients.find();
+db.patients.find().pretty();
+
+Dropa o banco:
 db.patients.dropDatabase()
 
 --------------------------------------------------------------------------------------

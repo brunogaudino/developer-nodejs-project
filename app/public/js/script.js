@@ -24,7 +24,7 @@ window.onload = function(){
       actionsSystem.filterPatience(this);
     });
 
-  };
+  }
   
   if (botaoAddPaciente) {
     botaoAddPaciente.addEventListener("click", function(event) {
@@ -57,7 +57,7 @@ window.onload = function(){
   }
 
   validationData.valid(pacientes);
-  actionsSystem.maskAddress();
+  //actionsSystem.maskAddress();
 
 };// end - window.onload
 
@@ -294,7 +294,9 @@ var registerPatience = (function(){
       //chamando a nova função adicionaPacienteNaTabela
       //registerPatience.adicionaPacienteNaTabela(paciente);
       form.submit();
-      form.reset();
+      setTimeout(function(){
+        form.reset();
+      }, 500);
       var mensagensErro = document.querySelector("#mensagem-de-erro");
       mensagensErro.innerHTML = "";
 
