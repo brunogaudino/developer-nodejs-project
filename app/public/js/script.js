@@ -286,6 +286,7 @@ var validationData = (function(){
 
 var registerPatience = (function(){
   return{
+    
     main: function(form, paciente, pacienteTr, erros){
       if (erros.length > 0) {
         registerPatience.exibeMensagensDeErro(erros);
