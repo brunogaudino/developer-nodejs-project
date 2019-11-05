@@ -1,3 +1,8 @@
+Usar a versão do mongo 2.2.19
+
+https://pt.stackoverflow.com/questions/353651/typeerror-this-connection-open-is-not-a-function
+
+
 --------------------------------------------------------------------------------------
 // inputCep.addEventListener("keyup", function(event){
         //   if(inputCep.value.length == 9) {
